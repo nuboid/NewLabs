@@ -73,7 +73,7 @@ namespace PlayPatternMatching
         public static void Lab001_3()
         {
             //TODO LAB001.3
-            //1. Examin the 4 switch arms.
+            //1. Examine the 4 switch arms.
             //2. Change the YearOfBirth to 1981 (do not change the switch).
             //3. Run it
             //4. Uncomment the 2 lines where the employee is a manager (you might need to comment another line of code)
@@ -107,7 +107,7 @@ namespace PlayPatternMatching
         public static void Lab001_4()
         {
             //TODO LAB001.4
-            //1. Examin the second switch arm.
+            //1. Examine the second switch arm.
             //2. Set the year of birth to 1970
             //3. Run it.
             //4. Add a switch arm for a developer having loads of experience
@@ -120,16 +120,18 @@ namespace PlayPatternMatching
             //7. Run it
             var developer = new Developer();
             developer.FirstName = "Kurt";
-            developer.YearOfBirth = 1980;
+            developer.YearOfBirth = 1970;
 
             string result = developer switch
             {
-                //Developer dev when dev.YearOfBirth >= 1980 && dev.YearOfBirth <= 1989
-                //  => $"{dev.FirstName} was born in the 80's",
-                Developer dev when IsExperienced(dev.LinesOfCodeWritten) => "this developer has loads of experience",
+                Developer dev when dev.YearOfBirth >= 1980 && dev.YearOfBirth <= 1989
+                  => $"{dev.FirstName} was born in the 80's",
+                                  
+
                 Developer dev when dev.YearOfBirth <= DateTime.Now.Year - 50
                   => "our trainer is not so young anymore",
 
+                
                 _ => "other case"
             };
 
@@ -138,7 +140,7 @@ namespace PlayPatternMatching
 
         private static bool IsExperienced(int linesCodeWritten)
         {
-            Console.WriteLine("Calculating id expierenced");
+            Console.WriteLine("Calculating is expierenced");
             if (linesCodeWritten > 1000000)
             {
                 return true;
@@ -223,13 +225,13 @@ namespace PlayPatternMatching
             //      - for AnotherThing with a y value above 0 and less or equal to 5
             //      - for AnotherThing with a y value above 5 and less or equal to 10
             //      - for AnotherThing with a y value above 10 and less or equal to 15
-            SomeEnum x = SomeEnum.This;
+            SomeEnum x = SomeEnum.That;
             var y = 11;
             string result = (x, y) switch
             {
                 (SomeEnum.This, 10) => "This is 10",
-                (SomeEnum.This, < 10) => "This below 10, it's acutally " + y,
-                (SomeEnum.This, > 10) => "This above 10, it's acutally " + y,
+                (SomeEnum.This, < 10) => "This is below 10, it's acutally " + y,
+                (SomeEnum.This, > 10) => "This is above 10, it's acutally " + y,
                 (SomeEnum.That, _) => "That, not evaluating the y value",                
                 //SomeEnum.SomethingElse => "Something else",
                 _ => throw new NotImplementedException(),
